@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_viewBook"
+        android:layout_width="369dp"
+        android:layout_height="195dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="5313-loading-7-book.json"
+        app:lottie_imageAssetsFolder="assets"
+        app:lottie_loop="true"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/labelTitle"
+        android:layout_width="363dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="116dp"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="@string/app_name"
+        android:textColor="#3831AC"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/animation_viewBook" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="327dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/shape_button"
+        android:onClick="sendRequestOnClick"
+        android:text="Buscar"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_viewSearch"
+        android:layout_width="144dp"
+        android:layout_height="146dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="5279-search-processing.json"
+        app:lottie_imageAssetsFolder="assets"
+        app:lottie_loop="true"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="344dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center|center_horizontal|top|center_vertical"
+        android:text="Introduce una palabra y haz clic en el botón para ver su definición."
+        android:textColor="#ff8000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelTitle"
+        app:layout_constraintVertical_bias="0.025" />
+
+    <EditText
+        android:id="@+id/enterWord"
+        android:layout_width="301dp"
+        android:layout_height="54dp"
+        android:ems="10"
+        android:hint="Tu palabra favorita :) ..."
+        android:inputType="textPersonName"
+        android:textColor="#3831AC"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <View
+        android:layout_width="313dp"
+        android:layout_height="6dp"
+        android:layout_marginBottom="32dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/showDef"
+        android:layout_width="353dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/enterWord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
