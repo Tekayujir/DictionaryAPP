@@ -40,12 +40,27 @@
         android:layout_height="52dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/shape_button"
-        android:onClick="sendRequestOnClick"
         android:text="Buscar"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="323dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center|center_horizontal|top|center_vertical"
+        android:text="Introduce una palabra y haz clic en el botón para ver su definición."
+        android:textColor="#ff8000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelTitle"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_viewSearch"
@@ -59,22 +74,6 @@
         app:lottie_imageAssetsFolder="assets"
         app:lottie_loop="true"
         tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="344dp"
-        android:layout_height="105dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center|center_horizontal|top|center_vertical"
-        android:text="Introduce una palabra y haz clic en el botón para ver su definición."
-        android:textColor="#ff8000"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelTitle"
-        app:layout_constraintVertical_bias="0.025" />
 
     <EditText
         android:id="@+id/enterWord"
@@ -101,8 +100,8 @@
 
     <TextView
         android:id="@+id/showDef"
-        android:layout_width="353dp"
-        android:layout_height="200dp"
+        android:layout_width="327dp"
+        android:layout_height="230dp"
         android:layout_marginBottom="24dp"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/enterWord"
