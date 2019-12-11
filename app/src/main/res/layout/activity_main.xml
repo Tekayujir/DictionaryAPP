@@ -52,7 +52,7 @@
         android:layout_height="109dp"
         android:layout_marginTop="32dp"
         android:gravity="center|center_horizontal|top|center_vertical"
-        android:text="Introduce una palabra y haz clic en el botón para ver su definición."
+        android:text="@string/intro"
         android:textColor="#ff8000"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
