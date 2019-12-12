@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">DictionaryAPP</string>
-    <string name="intro">Introduce tu palabra favorita para ver su definición:</string>
-    <string name="hide">Tu palabra favorita :) ...</string>
+    <string name="intro">Introduce tu palabra favorita para ver su definición. Fácil y sencillo:</string>
+    <string name="hide">Tu palabra favorita ...</string>
     <string name="boton">BUSCAR</string>
-    <string name="introEN">Enter your favorite word to see its definition:</string>
-    <string name="hideEN">Your favorite word :) ...</string>
-    <string name="botonEN">SEARCH</string>
     <string name="errorFind">¡Error al intentar buscar la definición!</string>
+    <string name="introEN">Enter your favorite word to see its definition. Easy and simple:</string>
+    <string name="hideEN">Your favorite word ...</string>
+    <string name="botonEN">SEARCH</string>
     <string name="errorFindEN">Error trying to find the definition!</string>
 </resources>

@@ -10,8 +10,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_viewBook"
-        android:layout_width="369dp"
-        android:layout_height="195dp"
+        android:layout_width="317dp"
+        android:layout_height="155dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:id="@+id/labelTitle"
         android:layout_width="363dp"
         android:layout_height="70dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="84dp"
         android:gravity="center|center_horizontal|center_vertical"
         android:text="@string/app_name"
         android:textColor="#3831AC"
@@ -38,9 +38,9 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="327dp"
+        android:layout_width="309dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/shape_button"
         android:text="Buscar"
         android:textColor="#ffffff"
@@ -82,7 +82,7 @@
         android:layout_width="301dp"
         android:layout_height="54dp"
         android:ems="10"
-        android:hint="Tu palabra favorita :) ..."
+        android:hint="@string/hide"
         android:inputType="textPersonName"
         android:textColor="#3831AC"
         app:layout_constraintBottom_toTopOf="@+id/button"
@@ -103,13 +103,14 @@
 
     <TextView
         android:id="@+id/showDef"
-        android:layout_width="327dp"
-        android:layout_height="230dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="314dp"
+        android:layout_height="264dp"
+        android:layout_marginBottom="4dp"
         android:gravity="center"
         android:textColor="@color/colorShowDef"
         app:layout_constraintBottom_toTopOf="@+id/enterWord"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

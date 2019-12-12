@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         with(enterWord) {
             this?.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
                 if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                    sendRequestOnClick(this?.text.toString(), idioma)
+                    sendRequestOnClick(this.text.toString(), idioma)
                     closeKeyboard()
 
                     return@OnKeyListener true
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             button.setText(R.string.boton)
 
             showDef?.setText("")
-            enterWord?.setText("")
+            //enterWord?.setText("")
 
             textoError = R.string.errorFind
 
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
             button.setText(R.string.botonEN)
 
             showDef?.setText("")
-            enterWord?.setText("")
+            //enterWord?.setText("")
 
             textoError = R.string.errorFindEN
 
@@ -131,12 +131,12 @@ class MainActivity : AppCompatActivity() {
                     val def: String
 
                     def = example.results?.get(0)?.lexicalEntries?.get(0)?.entries?.get(0)?.senses?.get(0)?.definitions?.get(0).toString()
-                    showDef?.text = "$def."
+                    showDef?.text = "$def"
 
                     Log.d("retrofit", "result size: ${example.results?.size}")
                 } else {
                     // llamada KO
-                    showDef?.setText("")
+                    showDef?.text = ""
                     val toast2 = Toast.makeText(applicationContext,
                             textoError, Toast.LENGTH_SHORT)
                     toast2.setGravity(Gravity.CENTER, 0, 270)
@@ -152,7 +152,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Cierra el teclado
+     * Oculta el teclado
      */
     private fun closeKeyboard(){
         var view: View? = this.currentFocus
