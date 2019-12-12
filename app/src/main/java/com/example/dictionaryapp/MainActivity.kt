@@ -88,6 +88,9 @@ class MainActivity : AppCompatActivity() {
             this.enterWord?.setHint(R.string.hide)
             button.setText(R.string.boton)
 
+            showDef?.setText("")
+            enterWord?.setText("")
+
             return true
         }
         // FISH AND CHIPS
@@ -98,6 +101,9 @@ class MainActivity : AppCompatActivity() {
             textView.setText(R.string.introEN)
             this.enterWord?.setHint(R.string.hideEN)
             button.setText(R.string.botonEN)
+
+            showDef?.setText("")
+            enterWord?.setText("")
 
             return true
         }
