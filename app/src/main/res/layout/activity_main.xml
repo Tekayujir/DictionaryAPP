@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fondito"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -87,7 +89,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        app:backgroundTint="@color/colorAccent" />
 
     <View
         android:layout_width="313dp"
@@ -104,6 +107,7 @@
         android:layout_height="230dp"
         android:layout_marginBottom="24dp"
         android:gravity="center"
+        android:textColor="@color/colorShowDef"
         app:layout_constraintBottom_toTopOf="@+id/enterWord"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -1,13 +1,15 @@
 package com.example.dictionaryapp
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dictionaryapp.model.word.Example
 import com.example.dictionaryapp.services.ServiceConfiguration
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity() {
             this?.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
                 if (keyCode == KeyEvent.KEYCODE_ENTER) {
                     sendRequestOnClick(this?.text.toString(), idioma)
+                    closeKeyboard()
+
                     return@OnKeyListener true
                 } else false
             })
@@ -40,31 +44,46 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             sendRequestOnClick(enterWord?.text.toString(), idioma)
         }
+
     }
 
     /**
-     * Menú
+     * Menú Toolbar
      */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu, menu)
+
+        // botón switch - cambio de color del tema de la app
+        val item = menu.findItem(R.id.action_one) as MenuItem
+        val switchMenu = item.actionView.findViewById<Switch>(R.id.action_one)
+
+        switchMenu.isChecked = false
+        switchMenu.setOnCheckedChangeListener { _ , isChecked ->
+            if (isChecked) {
+                fondito.setBackgroundColor(this.resources.getColor(R.color.colorBackgroundDark))
+                showDef?.setTextColor(this.resources.getColor(R.color.colorBackground))
+                enterWord?.setHintTextColor(this.resources.getColor(R.color.colorShowDefDark))
+            }
+            else {
+                fondito.setBackgroundColor(this.resources.getColor(R.color.colorBackground))
+                showDef?.setTextColor(this.resources.getColor(R.color.colorShowDef))
+                enterWord?.setHintTextColor(this.resources.getColor(R.color.colorShowDef))
+            }
+        }
+
         return true
     }
+    @SuppressLint("ResourceAsColor")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here.
         val id = item.itemId
 
-        // COLOR TEMA
-        if (id == R.id.action_one) {
-
-            // CAMBIAR LOS COLORES DEL TEMA DE LA APLICACION
-
-            return true
-        }
         // MI ESPAÑITA!!
         if (id == R.id.action_two) {
             idioma = "es"
 
+            // Cambia los textos a español
             textView.setText(R.string.intro)
             this.enterWord?.setHint(R.string.hide)
             button.setText(R.string.boton)
@@ -75,6 +94,7 @@ class MainActivity : AppCompatActivity() {
         if (id == R.id.action_three) {
             idioma = "en-gb"
 
+            // Cambia los textos a inglés
             textView.setText(R.string.introEN)
             this.enterWord?.setHint(R.string.hideEN)
             button.setText(R.string.botonEN)
@@ -113,5 +133,16 @@ class MainActivity : AppCompatActivity() {
                 t.printStackTrace()
             }
         })
+    }
+
+    /**
+     * Cierra el teclado
+     */
+    private fun closeKeyboard(){
+        var view: View? = this.currentFocus
+        if(view != null){
+            var imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 }

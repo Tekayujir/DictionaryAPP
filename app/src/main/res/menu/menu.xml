@@ -2,15 +2,17 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/action_one"
-        android:icon="@drawable/ic_theme"
-        app:showAsAction="always"
-        android:title="Tema"/>
+        android:title="SwitchTema"
+        app:actionViewClass="android.widget.Switch"
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_two"
         android:title="en Español"/>
     <item
         android:id="@+id/action_three"
         android:title="in English"/>
+
 </menu>

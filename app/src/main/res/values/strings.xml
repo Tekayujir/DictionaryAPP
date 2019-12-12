@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">DictionaryAPP</string>
-    <string name="intro">Introduce tu palabra favorita para ver su definición.</string>
+    <string name="intro">Introduce tu palabra favorita para ver su definición:</string>
     <string name="hide">Tu palabra favorita :) ...</string>
     <string name="boton">BUSCAR</string>
-    <string name="introEN">Enter your favorite word to see its definition.</string>
+    <string name="introEN">Enter your favorite word to see its definition:</string>
     <string name="hideEN">Your favorite word :) ...</string>
     <string name="botonEN">SEARCH</string>
 </resources>
