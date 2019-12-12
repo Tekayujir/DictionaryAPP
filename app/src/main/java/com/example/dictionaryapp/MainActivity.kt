@@ -3,12 +3,12 @@ package com.example.dictionaryapp
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.EditText
+import android.widget.Switch
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dictionaryapp.model.word.Example
 import com.example.dictionaryapp.services.ServiceConfiguration
@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private var showDef: TextView? = null
     private var enterWord: EditText? = null
     private var idioma: String = "es"
+    private var textoError: Int = R.string.errorFind
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,6 +92,8 @@ class MainActivity : AppCompatActivity() {
             showDef?.setText("")
             enterWord?.setText("")
 
+            textoError = R.string.errorFind
+
             return true
         }
         // FISH AND CHIPS
@@ -104,6 +107,8 @@ class MainActivity : AppCompatActivity() {
 
             showDef?.setText("")
             enterWord?.setText("")
+
+            textoError = R.string.errorFindEN
 
             return true
         }
@@ -131,6 +136,11 @@ class MainActivity : AppCompatActivity() {
                     Log.d("retrofit", "result size: ${example.results?.size}")
                 } else {
                     // llamada KO
+                    showDef?.setText("")
+                    val toast2 = Toast.makeText(applicationContext,
+                            textoError, Toast.LENGTH_SHORT)
+                    toast2.setGravity(Gravity.CENTER, 0, 270)
+                    toast2.show()
 
                     Log.e("retrofit", "return: ${response.errorBody()}")
                 }

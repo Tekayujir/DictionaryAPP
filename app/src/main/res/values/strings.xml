@@ -6,4 +6,6 @@
     <string name="introEN">Enter your favorite word to see its definition:</string>
     <string name="hideEN">Your favorite word :) ...</string>
     <string name="botonEN">SEARCH</string>
+    <string name="errorFind">¡Error al intentar buscar la definición!</string>
+    <string name="errorFindEN">Error trying to find the definition!</string>
 </resources>
