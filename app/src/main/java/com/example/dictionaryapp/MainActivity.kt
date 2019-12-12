@@ -1,6 +1,5 @@
 package com.example.dictionaryapp
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -63,18 +62,19 @@ class MainActivity : AppCompatActivity() {
             if (isChecked) {
                 fondito.setBackgroundColor(this.resources.getColor(R.color.colorBackgroundDark))
                 showDef?.setTextColor(this.resources.getColor(R.color.colorBackground))
-                enterWord?.setHintTextColor(this.resources.getColor(R.color.colorShowDefDark))
+                enterWord?.setHintTextColor(this.resources.getColor(R.color.colorEnterWordDark))
+                enterWord?.setTextColor(this.resources.getColor(R.color.colorShowDefDark))
             }
             else {
                 fondito.setBackgroundColor(this.resources.getColor(R.color.colorBackground))
                 showDef?.setTextColor(this.resources.getColor(R.color.colorShowDef))
                 enterWord?.setHintTextColor(this.resources.getColor(R.color.colorShowDef))
+                enterWord?.setTextColor(this.resources.getColor(R.color.colorPrimary))
             }
         }
 
         return true
     }
-    @SuppressLint("ResourceAsColor")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here.
         val id = item.itemId
