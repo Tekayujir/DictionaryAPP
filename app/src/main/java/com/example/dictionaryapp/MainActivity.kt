@@ -1,6 +1,7 @@
 package com.example.dictionaryapp
 
 import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private var enterWord: EditText? = null
     private var idioma: String = "es"
     private var textoError: Int = R.string.errorFind
+    private var textoErrorInterneto: Int = R.string.textoErrorInterneto
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,6 +95,7 @@ class MainActivity : AppCompatActivity() {
             //enterWord?.setText("")
 
             textoError = R.string.errorFind
+            textoErrorInterneto = R.string.textoErrorInterneto
 
             return true
         }
@@ -109,6 +112,7 @@ class MainActivity : AppCompatActivity() {
             //enterWord?.setText("")
 
             textoError = R.string.errorFindEN
+            textoErrorInterneto = R.string.textoErrorInternetoEN
 
             return true
         }
@@ -122,6 +126,9 @@ class MainActivity : AppCompatActivity() {
     private fun sendRequestOnClick(word: String, idioma: String) {
         val service = ServiceConfiguration().getService()
         val call = service.getWord(word, idioma)
+
+        // Comprobando conexión a internet
+        onNetworkChange()
 
         call?.enqueue(object : Callback<Example> {
             override fun onResponse(call: Call<Example>, response: Response<Example>) {
@@ -137,10 +144,7 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     // llamada KO
                     showDef?.text = ""
-                    val toast2 = Toast.makeText(applicationContext,
-                            textoError, Toast.LENGTH_SHORT)
-                    toast2.setGravity(Gravity.CENTER, 0, 270)
-                    toast2.show()
+                    Tostarica(textoError)
 
                     Log.e("retrofit", "return: ${response.errorBody()}")
                 }
@@ -160,5 +164,28 @@ class MainActivity : AppCompatActivity() {
             var imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    /**
+     * Comprueba la conexión a internet
+     */
+    private fun onNetworkChange() {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+
+        if (networkInfo != null && networkInfo.isConnected) { // Si hay conexión a Internet en este momento
+        } else { // No hay conexión a Internet en este momento
+            Tostarica(textoErrorInterneto)
+        }
+    }
+
+    /**
+     * Muestra un Toast
+     */
+    private fun Tostarica(texto: Int){
+        val toast = Toast.makeText(applicationContext,
+                texto, Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.CENTER, 0, 270)
+        toast.show()
     }
 }

@@ -8,4 +8,7 @@
     <string name="hideEN">Your favorite word ...</string>
     <string name="botonEN">SEARCH</string>
     <string name="errorFindEN">Error trying to find the definition!</string>
+
+    <string name="textoErrorInterneto">¡No tienes conexión a internet!</string>
+    <string name="textoErrorInternetoEN">You have no internet connection!</string>
 </resources>
