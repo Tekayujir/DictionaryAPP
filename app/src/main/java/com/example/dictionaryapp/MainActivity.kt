@@ -11,7 +11,10 @@ import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 import com.example.dictionaryapp.model.word.Example
+import com.example.dictionaryapp.roomDB.DBSwitch
+import com.example.dictionaryapp.roomDB.EntitySwitch
 import com.example.dictionaryapp.services.ServiceConfiguration
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -26,27 +29,48 @@ class MainActivity : AppCompatActivity() {
     private var textoError: Int = R.string.errorFind
     private var textoErrorInterneto: Int = R.string.textoErrorInterneto
 
+    //Room
+    private var db: DBSwitch? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        db = Room.databaseBuilder(applicationContext, DBSwitch::class.java, "isChecked").allowMainThreadQueries().build()
+
         showDef = findViewById(R.id.showDef)
         enterWord = findViewById(R.id.enterWord)
 
+        // Al pulsar el botón INTRO del teclado
         with(enterWord) {
             this?.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
                 if (keyCode == KeyEvent.KEYCODE_ENTER) {
                     sendRequestOnClick(this.text.toString(), idioma)
                     closeKeyboard()
 
-                    return@OnKeyListener true
+                    //return@OnKeyListener true
+                    true
                 } else false
             })
         }
 
+        // Al pulsar el botón BUSCAR/SEARCH
         button.setOnClickListener {
             sendRequestOnClick(enterWord?.text.toString(), idioma)
         }
 
+
+        // Primera vez que inicia la APP, si no contiene ningún valor (true o false), inserta false
+        if(db?.daoSwitch()?.getChecked()?.isEmpty()!!){
+            db?.daoSwitch()?.insertChecked(EntitySwitch(0, false))
+        }
+
+        // Cambio de tema - Conserva el estado al cerrar la APP
+        if(db?.daoSwitch()?.getChecked()?.first()?.checked!!){
+            darkTheme()
+        }else{
+            whiteTheme()
+        }
     }
 
     /**
@@ -56,28 +80,39 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu, menu)
 
-        // botón switch - cambio de color del tema de la app
+        // Botón switch - Cambio de color del tema de la app
         val item = menu.findItem(R.id.action_one) as MenuItem
         val switchMenu = item.actionView.findViewById<Switch>(R.id.action_one)
 
-        switchMenu.isChecked = false
+        // Mantiene el Switch en su posición
+        switchMenu.isChecked = db?.daoSwitch()?.getChecked()?.first()?.checked!!
+
         switchMenu.setOnCheckedChangeListener { _ , isChecked ->
             if (isChecked) {
-                fondito.setBackgroundColor(this.resources.getColor(R.color.colorBackgroundDark))
-                showDef?.setTextColor(this.resources.getColor(R.color.colorBackground))
-                enterWord?.setHintTextColor(this.resources.getColor(R.color.colorEnterWordDark))
-                enterWord?.setTextColor(this.resources.getColor(R.color.colorShowDefDark))
+                darkTheme()
             }
             else {
-                fondito.setBackgroundColor(this.resources.getColor(R.color.colorBackground))
-                showDef?.setTextColor(this.resources.getColor(R.color.colorShowDef))
-                enterWord?.setHintTextColor(this.resources.getColor(R.color.colorShowDef))
-                enterWord?.setTextColor(this.resources.getColor(R.color.colorPrimary))
+                whiteTheme()
             }
+            // Almacena el boolean al pulsar el switch
+            db?.daoSwitch()?.updateChecked(EntitySwitch(0, isChecked))
         }
-
         return true
     }
+
+    fun darkTheme(){
+        fondito.setBackgroundColor(this.resources.getColor(R.color.colorBackgroundDark))
+        showDef?.setTextColor(this.resources.getColor(R.color.colorShowDefWhite))
+        enterWord?.setHintTextColor(this.resources.getColor(R.color.colorEnterWordDark))
+        enterWord?.setTextColor(this.resources.getColor(R.color.colorShowDefDark))
+    }
+    fun whiteTheme(){
+        fondito.setBackgroundColor(this.resources.getColor(R.color.colorBackground))
+        showDef?.setTextColor(this.resources.getColor(R.color.colorShowDef))
+        enterWord?.setHintTextColor(this.resources.getColor(R.color.colorShowDef))
+        enterWord?.setTextColor(this.resources.getColor(R.color.colorPrimary))
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here.
         val id = item.itemId

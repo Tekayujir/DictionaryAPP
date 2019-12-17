@@ -8,4 +8,5 @@
     <color name="colorShowDef">#666666</color>
     <color name="colorShowDefDark">#ededed</color>
     <color name="colorEnterWordDark">#7d7d7d</color>
+    <color name="colorShowDefWhite">#dedede</color>
 </resources>
